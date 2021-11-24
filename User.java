@@ -9,7 +9,10 @@ public class User {
     private String id;
 
     public User ()
-    {}
+    {
+        name = "";
+        id = "";
+    }
 
     public User(String name, String id){
         this.name = name;

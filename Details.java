@@ -17,6 +17,12 @@ public class Details {
         System.out.println("Please enter 1 if you are student, 2 if you are a teacher, and 3 if you are the admin");
     }
 
+    public void invalidLoginDetails ()
+    {
+        System.out.println("The value entered cannot be recognised by the system.");
+        System.out.println("Please check it once and try again");
+    }
+
     public void signupDetails ()
     {
         System.out.println("Enter ");

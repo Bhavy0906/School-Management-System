@@ -13,6 +13,11 @@ public class Teacher extends User{
     private String attendence;
     TreeMap <String, String[]> detailMap = new TreeMap<>();
 
+    public Teacher ()
+    {
+
+    }
+
     public Teacher(String id, String name){
         this.id = id;
         this.name = name;
@@ -21,6 +26,13 @@ public class Teacher extends User{
         grades = "NC";
         attendence = "";
     } 
+
+    public void basicDetails ()
+    {
+        System.out.println("Hello " + name);
+        System.out.println("Welcome to the school");
+        System.out.println("Enter 1 for ");
+    }
     
     void idOfStudent(){
         idOfStudents = getIDStudent();

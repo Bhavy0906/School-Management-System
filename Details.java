@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.*;
 
+//Displays the basic information and various print statements guiding the 
+
 public class Details {
 
     public void basicDisplay ()

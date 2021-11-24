@@ -33,35 +33,21 @@ public class Main {
         }    
         userID = input.userID();
         password = input.password();
-        switch (enter)
+        if (password != "")
         {
-            case 1:
-            
-            if (password != "")
+            switch (enter)
+            {
+                case 1:
                 signup.setUserID(userID, password, tree);
-            else
                 break;
-            break;
 
-            case 2:
-            t = type.post();
-            if (t == 1 || t == 2 || t == 3)
-            {
-                tree = mapReturn.type(t);
-            }
-            else 
-            {
-                details.invalidLoginDetails();
-                break;
-            }
-            userID = input.userID();
-            password = input.password();
-            if (password != "")
+                case 2:
                 login.loginCheck(userID, password, tree);
-            else
                 break;
-            break;
+            }
         }
+        else
+            break;
 
     }
 }

@@ -3,70 +3,128 @@ import java.util.*;
 
 public class FileManagement {
 
-    //The class will contain the basic code of file initiation and usage.
-    //Just copy paste it to the relevant portions.
+    // The class will contain the basic code of file initiation and usage.
+    // Just copy paste it to the relevant portions.
 
-    //Format of the file storing UserID and Password
-    //   UserID
-    //   Password
-    //Even places have User ID and Odd places have password
+    // Format of the file storing UserID and Password
+    // UserID
+    // Password
+    // Even places have User ID and Odd places have password
 
-    //Will return the file name in which the the login details would be stored
-    public String type (int ch)
-    {
+    // Will return the file name in which the the login details would be stored
+    public String typeTXT(int ch) {
         if (ch == 1)
-        return "Student.txt";
+            return "Student.txt";
         if (ch == 2)
-        return "Teacher.txt";
+            return "Teacher.txt";
         if (ch == 3)
-        return "Admin.txt";
+            return "Admin.txt";
         return "";
     }
 
-    public void emptyFileCreation (int choice)throws IOException
-    {
+    // Will return the file name in which the basic details of the students and
+    // teacher will be stored.
+    public String typeCSV(int ch) {
+        if (ch == 1)
+            return "Student.csv";
+        if (ch == 2)
+            return "Teacher.csv";
+        return "";
+    }
+
+    // Creates empty .csv files of Student and Teacher storing the details of them
+    public void emptyCsvFileCreation(int choice) throws IOException {
         Writer out = null;
         String str = "";
         try {
-            out = new FileWriter(type(choice));
+            out = new FileWriter(typeCSV(choice));
             out.write(str);
         } catch (Exception e) {
             System.err.println(e);
         }
         out.close();
     }
-    
-    public void loginInput(String userID, String password, int choice)throws IOException {
-        //choice denotes the values assigned to student, teacher, and admin
+
+    // Creates empty .txt files of student, teacher and admin storing the login
+    // details
+    public void emptyTxtFileCreation(int choice) throws IOException {
         Writer out = null;
+        String str = "";
         try {
-            out = new BufferedWriter(new FileWriter(type(choice), true));
-            out.write(userID + "\n");
-            out.write(password + "\n");
-            //Will write the UserID and Password to the file and will store them
+            out = new FileWriter(typeTXT(choice));
+            out.write(str);
         } catch (Exception e) {
             System.err.println(e);
         }
         out.close();
     }
 
-    public String loginSearch (String userID, int choice)throws IOException
-    {
-        BufferedReader input = null;
-        String name = type(choice);
-        String str = "";
+    // Writes the basic details of the student into a .csv file
+    public void detailsInputStudent(String userID, String name, String[] course, String[] marks, int attendence,
+            int grades, int choice) throws IOException {
+        Writer out = null;
         try {
-            input = new BufferedReader (new FileReader(name));
-            while ((str = input.readLine()) != null)
-            {
-                if (str.equals(userID))
-                    return input.readLine();
+            out = new BufferedWriter(new FileWriter(typeCSV(choice), true));
+            out.write(userID + "," + name + "," + attendence);
+            for (int i = 0; i < 5; i++) {
+                out.write(course[i] + "," + marks[i] + ",");
             }
-            input.close();
-            return "";
+            out.write(grades);
+            // Will write the details into the .csv file in the format:-
+            // UserID Name Attendence Course[i] Marks[i] Grades
         } catch (Exception e) {
             System.err.println(e);
         }
+        out.close();
     }
-    
+
+    // Writes the basic details of the teacher into a .csv file
+    public void detailsInputTeacher(String userID, String name, String[] course, int choice) throws IOException {
+        Writer out = null;
+        try {
+            out = new BufferedWriter(new FileWriter(typeCSV(choice), true));
+            out.write(userID + "," + name + ",");
+            for (int i = 0; i < 3; i++) {
+                out.write(course[i] + ",");
+            }
+            // Will write the details into the .csv file in the format:-
+            // UserID   Name    Course[i]
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        out.close();
+    }
+
+    // Writes the login details of the student, teacher and admin into a .txt file
+    public void loginInput(String userID, String password, int choice) throws IOException {
+        // choice denotes the values assigned to student, teacher, and admin
+        Writer out = null;
+        try {
+            out = new BufferedWriter(new FileWriter(typeTXT(choice), true));
+            out.write(userID + "\n");
+            out.write(password + "\n");
+            // Will write the UserID and Password to the file and will store them
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        out.close();
+    }
+
+    public String loginSearch(String userID, int choice) throws IOException {
+        BufferedReader input = null;
+        String name = typeTXT(choice);
+        String str = "";
+        try {
+            input = new BufferedReader(new FileReader(name));
+            while ((str = input.readLine()) != null) {
+                if (str.equals(userID))
+                    return input.readLine();
+            }
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        input.close();
+        return "";
+    }
+
 }

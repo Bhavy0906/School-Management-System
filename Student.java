@@ -9,6 +9,11 @@ public class Student extends User {
     private int calculateAttendence;
     private String grades;
 
+    public Student ()
+    {
+        
+    }
+
     public Student (String name, String id)
     {
         this.name = name;

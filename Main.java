@@ -15,17 +15,34 @@ public class Main {
         Signup signup = new Signup();
         Type type = new Type();
         int t = 0;
+        TreeMap <String, String> tree;
+        MapReturn mapReturn = new MapReturn();
+        Input input = new Input();
+        String userID = "";
+        String password = "";
         switch (enter)
         {
             case 1:
             t = type.post();
             if (t == 1 || t == 2 || t == 3)
             {
-
+                tree = mapReturn.type(t);
             }
             else 
-                details.
-            signup.setUserID(userID, password, type)
+            {
+                details.invalidLoginDetails();
+                break;
+            }    
+            userID = input.userID();
+            password = input.password();
+            if (password != "")
+                signup.setUserID(userID, password, tree);
+            else
+                break;
+            break;
+
+            case 2:
+            
         }
 
     }

@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-//Displays the basic information and various print statements guiding the 
+//Displays the basic information and various print statements guiding the user through the code.
 
 public class Details {
 

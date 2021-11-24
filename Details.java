@@ -6,7 +6,7 @@ public class Details {
     public void basicDisplay ()
     {
         System.out.println("******************Welcome to Birla Institute of Technology and Science******************");
-        System.out.println("The school welcomes you ");
+        System.out.println("The School welcomes you ");
 
 
         System.out.println("");

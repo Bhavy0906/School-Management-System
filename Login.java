@@ -7,7 +7,7 @@ public class Login extends User{
     private String password;
     static BufferedReader br = new BufferedReader (new InputStreamReader (System.in));
 
-    public Login ()
+    public Login()
     {
         userID = "";
         password = "";
@@ -17,7 +17,7 @@ public class Login extends User{
     { 
         if (type.containsKey(userID)) 
         {
-            if (type.containsValue(password))
+            if (type.get(userID) == password)
                 return true;
             else
                 return false;

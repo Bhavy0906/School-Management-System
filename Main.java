@@ -21,21 +21,22 @@ public class Main {
         Input input = new Input();
         String userID = "";
         String password = "";
+        t = type.post();
+        if (t == 1 || t == 2 || t == 3)
+        {
+            tree = mapReturn.type(t);
+        }
+        else 
+        {
+            details.invalidLoginDetails();
+            break;
+        }    
+        userID = input.userID();
+        password = input.password();
         switch (enter)
         {
             case 1:
-            t = type.post();
-            if (t == 1 || t == 2 || t == 3)
-            {
-                tree = mapReturn.type(t);
-            }
-            else 
-            {
-                details.invalidLoginDetails();
-                break;
-            }    
-            userID = input.userID();
-            password = input.password();
+            
             if (password != "")
                 signup.setUserID(userID, password, tree);
             else

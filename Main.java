@@ -13,6 +13,7 @@ public class Main {
         details.enterInto();
         int enter = Integer.parseInt(br.readLine());
         Signup signup = new Signup();
+        Login login = new Login ();
         Type type = new Type();
         int t = 0;
         TreeMap <String, String> tree;
@@ -42,7 +43,23 @@ public class Main {
             break;
 
             case 2:
-            
+            t = type.post();
+            if (t == 1 || t == 2 || t == 3)
+            {
+                tree = mapReturn.type(t);
+            }
+            else 
+            {
+                details.invalidLoginDetails();
+                break;
+            }
+            userID = input.userID();
+            password = input.password();
+            if (password != "")
+                login.loginCheck(userID, password, tree);
+            else
+                break;
+            break;
         }
 
     }

@@ -8,16 +8,14 @@ public class MapReturn extends User {
         switch (ch)
         {
             case 1:
-            tree = super.student;
-            break;
+                return student;
             case 2:
-            tree = super.teacher;
-            break;
+                return teacher;
             case 3:
-            tree = super.admin;
-            break;
+                return admin;
+            default: 
+                return tree;
         }
-        return tree;
     }
 
 }

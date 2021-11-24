@@ -5,6 +5,7 @@ public class Signup extends User {
 
     private String userID;
     private String password;
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     public Signup ()
     {

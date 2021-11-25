@@ -13,7 +13,7 @@ public class Login extends User{
         password = "";
     }
 
-    void loginValueCheck(TreeMap<String,String> tree) throws IOException{
+    void loginValueCheck(int number) throws IOException{
         num = Integer.parseInt(br.readLine());
         Details dtl = new Details();
         while(num !=  1){
@@ -23,17 +23,19 @@ public class Login extends User{
             continue;
         }
             Input in = new Input();
+            FileManagement fm = new FileManagement();
             userID = in.userID();
-            // while(!tree.containsValue(userID)){
-            //     System.out.println("Username Incorrect");
-            //     userID = in.userID();
-            // }
-            password = in.password();
-            boolean check = loginCheck(userID, password, tree);
-            while(!check){
-              dtl.incorrectPassword();
-              password = in.password();
-              check = loginCheck(userID, password, tree);
+            password = fm.loginSearch(userID, number);
+            while(password.equals("")){
+                System.out.println("Username Incorrect");
+                userID = in.userID();
+                password = fm.loginSearch(userID, number);
+                continue;
+            }
+            String pass = in.password();
+            while(!pass.equals(password)){
+                dtl.incorrectPassword();
+                pass = in.password();
             }
             System.err.println("Login Successful");
 

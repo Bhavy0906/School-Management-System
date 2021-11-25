@@ -21,13 +21,27 @@ public class FileManagement {
         return "";
     }
 
+    //Admin class login details
+    final public void adminDetails ()throws IOException
+    {
+        Writer out = null;
+        String str = "Admin333031" + "\n" + "User@123";
+        try {
+            out = new FileWriter("Admin.txt");
+            out.write(str);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        out.close();
+    }
+
     // Will return the file name in which the basic details of the students and
     // teacher will be stored.
     public String typeCSV(int ch) {
         if (ch == 1)
-            return "Student.csv";
+            return "StudentInfo.csv";
         if (ch == 2)
-            return "Teacher.csv";
+            return "TeacherInfo.csv";
         return "";
     }
 
@@ -59,16 +73,18 @@ public class FileManagement {
     }
 
     // Writes the basic details of the student into a .csv file
-    public void detailsInputStudent(String userID, String name, String[] course, String[] marks, int attendence,
-            int grades, int choice) throws IOException {
+    public void detailsInputStudent(String userID, String name, String[] course, int[] marks, int attendence,
+            double grades, int choice) throws IOException {
         Writer out = null;
         try {
             out = new BufferedWriter(new FileWriter(typeCSV(choice), true));
             out.write(userID + "," + name + "," + attendence);
             for (int i = 0; i < 5; i++) {
-                out.write(course[i] + "," + marks[i] + ",");
+                out.write(course[i] + "," + Integer.toString(marks[i]) + ",");
+                grades = grades + marks[i];
             }
-            out.write(grades);
+            grades = grades / 5;
+            out.write(Double.toString(grades));
             // Will write the details into the .csv file in the format:-
             // UserID Name Attendence Course[i] Marks[i] Grades
         } catch (Exception e) {
@@ -118,11 +134,12 @@ public class FileManagement {
             while ((str = input.readLine()) != null) {
                 if (str.equals(userID))
                     return input.readLine();
+                    // input.close();
             }
         } catch (Exception e) {
             System.err.println(e);
+            input.close();
         }
-        input.close();
         return "";
     }
 

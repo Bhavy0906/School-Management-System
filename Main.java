@@ -22,6 +22,7 @@ public class Main {
         tree = type.post();
 
         Signup signup = new Signup();
+        //Creates instance of the sign up class
         Login login = new Login();
 
         if (tree == User.student) {
@@ -50,6 +51,51 @@ public class Main {
 
         }
 
+
+
+
+
+        //Different Approach
+        //Will be added only if it works fine
+        Outer:
+        do {
+            enter = Integer.parseInt(br.readLine());
+            t = type.post();
+            //post method defines whether user is a student or a teacher or admin.
+            if (t == 1 || t == 2 || t == 3) {
+                tree = mapReturn.type(t);
+            } else {
+                details.invalidLoginDetails();
+                break;
+            }
+            userID = input.userID();
+            password = input.password();
+            if (password != "") {
+                if(!login.loginCheck(userID, password, tree))                   
+                    break Outer;
+                } else{
+                System.out.println("Password format incorrect");
+                System.out.println("Try again");
+                break;
+            }
+            User object;
+            if (t == 1)
+            {
+                object = new Student ();
+            }
+            if (t == 2)
+            {
+                object = new Teacher ();
+            }
+            if (t == 3)
+            {
+                object = new Admin ();
+            }
+            
+
+
+
+        } while (false);
     }
     
 

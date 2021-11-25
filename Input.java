@@ -32,8 +32,13 @@ public class Input {
         boolean capital = false;
         boolean small = false;
         boolean number = false;
+        int len = pass.length();
 
-        for (int i = 0; i < pass.length(); i++) {
+        if (len < 8 || len > 15) {
+            return false;
+        }
+
+        for (int i = 0; i < len; i++) {
             char ch = pass.charAt(i);
             if (Character.isLowerCase(ch))
                 small = true;

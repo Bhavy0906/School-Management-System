@@ -34,18 +34,18 @@ public class Details {
         System.out.println("Enter 1 if you are an existing user and want to login into you system");
     }
     public void enterSignup(){
-        System.out.println("Enter 2 if you are new to the system and want to signup.");
+        System.out.println("Enter 1 for Student Signup.           Enter 2 for Teacher Signup.");
     }
     
     public void incorrectPassword(){
         System.out.println("\n**Incorrect password, Please enter again**");
     }
 
-    public void studentSignup(){
-        System.out.println("\nEnter 1 to add a new Student");
-    }
+    // public void studentSignup(){
+    //     System.out.println("\nEnter 1 to add a new Student");
+    // }
 
-    public void teacherSignup(){
-        System.out.println("Enter 2 to add a new Teacher");
-    }
+    // public void teacherSignup(){
+    //     System.out.println("Enter 2 to add a new Teacher");
+    // }
 }

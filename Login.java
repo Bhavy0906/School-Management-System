@@ -13,7 +13,7 @@ public class Login extends User{
         password = "";
     }
 
-    void loginValueCheck(int number) throws IOException{
+    public String loginValueCheck(int number) throws IOException{
         num = Integer.parseInt(br.readLine());
         Details dtl = new Details();
         while(num !=  1){
@@ -38,7 +38,7 @@ public class Login extends User{
                 pass = in.password();
             }
             System.err.println("Login Successful");
-
+            return userID;
         }
     
     boolean loginCheck (String userID, String password, TreeMap<String, String> type)throws IOException

@@ -4,36 +4,36 @@ public class Input {
 
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    public String userID ()throws IOException
-    {
+    public String userID() throws IOException {
         System.out.println("Enter the user id");
         return br.readLine();
     }
 
-    public String password ()throws IOException
-    {
-        String pass = br.readLine();    
-        boolean valid = passwordCheck(pass);
-        if (valid)
-            return pass;
-        return "";    
-    }
-    
-    public void passwordDetails ()
-    {
-        System.out.println("Enter the password"); 
-        System.out.println("The password should be atleast 8 characters long and the maximum length of the password should be 15 characters");
-        System.out.println("The password should contain atleast one uppercase letter, one lowercase letter, and one numeric character");
+    public String password() throws IOException {
+        boolean valid = false;
+        String pass = " ";
+        while (!valid){
+            passwordDetails();
+            pass = br.readLine();
+            valid = passwordCheck(pass);
+        }
+        return pass;
     }
 
-    public boolean passwordCheck (String pass)
-    {
+    public void passwordDetails() {
+        System.out.println("\nEnter the password");
+        System.out.println(
+                "The password should be atleast 8 characters long and the maximum length of the password should be 15 characters");
+        System.out.println(
+                "The password should contain atleast one uppercase letter, one lowercase letter, and one numeric character");
+    }
+
+    public boolean passwordCheck(String pass) {
         boolean capital = false;
         boolean small = false;
         boolean number = false;
 
-        for (int i = 0; i < pass.length(); i++)
-        {
+        for (int i = 0; i < pass.length(); i++) {
             char ch = pass.charAt(i);
             if (Character.isLowerCase(ch))
                 small = true;
@@ -41,8 +41,7 @@ public class Input {
                 capital = true;
             if (Character.isDigit(ch))
                 number = true;
-            if (capital && small && number)
-            {
+            if (capital && small && number) {
                 return true;
             }
         }

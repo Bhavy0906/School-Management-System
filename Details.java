@@ -34,7 +34,7 @@ public class Details {
         System.out.println("Enter 1 if you are an existing user and want to login into you system");
     }
     public void enterSignup(){
-        System.out.println("Enter 1 for Student Signup.           Enter 2 for Teacher Signup.");
+        System.out.println("Enter 1 for Student Signup.           Enter 2 for Teacher Signup.             Enter 3 to delete a record");
     }
     
     public void incorrectPassword(){

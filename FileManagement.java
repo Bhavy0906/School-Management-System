@@ -22,18 +22,18 @@ public class FileManagement {
     }
 
     //Admin class login details
-    final public void adminDetails ()throws IOException
-    {
-        Writer out = null;
-        String str = "Admin333031" + "\n" + "User@123";
-        try {
-            out = new FileWriter("Admin.txt");
-            out.write(str);
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-        out.close();
-    }
+    // final public void adminDetails ()throws IOException
+    // {
+    //     Writer out = null;
+    //     String str = "Admin333031" + "\n" + "User@123";
+    //     try {
+    //         out = new FileWriter("Admin.txt");
+    //         out.write(str);
+    //     } catch (Exception e) {
+    //         System.err.println(e);
+    //     }
+    //     out.close();
+    // }
 
     // Will return the file name in which the basic details of the students and
     // teacher will be stored.
@@ -132,13 +132,18 @@ public class FileManagement {
         try {
             input = new BufferedReader(new FileReader(name));
             while ((str = input.readLine()) != null) {
-                if (str.equals(userID))
-                    return input.readLine();
-                    // input.close();
-            }
+                if (str.equals(userID)){
+                    String inp = input.readLine();
+                    return inp;
+                }
+                else{
+                    input.readLine();
+                    continue;
+                }  
+            } input.close();
         } catch (Exception e) {
             System.err.println(e);
-            input.close();
+            // input.close();
         }
         return "";
     }

@@ -41,14 +41,14 @@ public class Teacher extends User {
         idOfStudents = getIDStudent();
     }
 
-    void setDetails(String id, String course, int marks) throws IOException {
+    static void setDetails(String id, String course, int marks) throws IOException {
         // String[] details = {course, marks, grade, attendence};
         // detailMap.put(id, details);
         FileManagement fm = new FileManagement();
         fm.studentInfoAppend(id, course, marks);
     }
 
-    public void getDetails() throws IOException {
+    static void getDetails(String id) throws IOException {
         FileManagement fm = new FileManagement();
         String str = fm.infoReader(id, 2);
         int index[] = new int[4];
@@ -61,7 +61,7 @@ public class Teacher extends User {
             }
         }
         System.out.println("Name of the teacher is :- " + str.substring(index[1], index[2]));
-        System.out.println("Id of the teacher is :- " + this.id);
+        System.out.println("Id of the teacher is :- " + id);
         System.out.println("The couses taught by the teacher are :- ");
         for (int i = 1; i < 4; i++) {
             System.out.println(str.substring(index[i], index[i + 1]));

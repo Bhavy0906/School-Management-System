@@ -28,7 +28,7 @@ public class Main {
         Login login = new Login();
         Teacher tch;
 
-         if (tree == User.admin) {
+        if (tree == User.admin) {
             details.enterLogin();
             login.loginValueCheck(3);
 
@@ -59,57 +59,23 @@ public class Main {
                 // tch.setDetails("Uday", "Opti", 50);
             }
 
-        }
-        else if (tree == User.student) {
+        } else if (tree == User.student) {
             details.enterLogin();
             String userID = login.loginValueCheck(1);
+            Student.getDetails(userID);
 
         } else if (tree == User.teacher) {
             details.enterLogin();
             String userID = login.loginValueCheck(2);
             // Teacher.setDetails("Bhavy", "Meow", 50);
-            Teacher.setDetails("Uday", "Opti", 50);
+            System.out.println("Enter student user id");
+            String id = br.readLine();
+            System.out.println("Enter course name");
+            String course = br.readLine();
+            System.out.println("Enter course marks");
+            int marks = Integer.parseInt(br.readLine());
+            Teacher.setDetails(id, course, marks);
 
         }
-
-        // Different Approach
-        // Will be added only if it works fine
-        // Outer:
-        // do {
-        // enter = Integer.parseInt(br.readLine());
-        // t = type.post();
-        // //post method defines whether user is a student or a teacher or admin.
-        // if (t == 1 || t == 2 || t == 3) {
-        // tree = mapReturn.type(t);
-        // } else {
-        // details.invalidLoginDetails();
-        // break;
-        // }
-        // userID = input.userID();
-        // password = input.password();
-        // if (password != "") {
-        // if(!login.loginCheck(userID, password, tree))
-        // break Outer;
-        // } else{
-        // System.out.println("Password format incorrect");
-        // System.out.println("Try again");
-        // break;
-        // }
-        // User object;
-        // if (t == 1)
-        // {
-        // object = new Student ();
-        // }
-        // if (t == 2)
-        // {
-        // object = new Teacher ();
-        // }
-        // if (t == 3)
-        // {
-        // object = new Admin ();
-        // }
-
-        // } while (false);
     }
-
 }

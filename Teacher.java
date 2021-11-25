@@ -14,22 +14,18 @@ public class Teacher extends User {
     private String marks;
     private String grades;
     private String attendence;
+    private String[] course;
     TreeMap<String, String[]> detailMap = new TreeMap<>();
 
-    public Teacher() {
-
-    }
-
-    public Teacher(String id, String name, String password) {
+    public Teacher(String id, String name, String password, String[] course) throws IOException {
         this.id = id;
+        this.course = course;
         this.name = name;
         this.password = password;
         FileManagement fm = new FileManagement();
-        try {
-            fm.loginInput(this.id, this.password, 2);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        fm.loginInput(this.id, this.password, 2);
+
+        fm.detailsInputTeacher(this.id, this.name, this.course, 2);
         marks = "";
         grades = "NC";
         attendence = "";
@@ -45,15 +41,14 @@ public class Teacher extends User {
         idOfStudents = getIDStudent();
     }
 
-    void setDetails(String id, String[] course, String[] marks)throws IOException{
+    void setDetails(String id, String course, int marks) throws IOException {
         // String[] details = {course, marks, grade, attendence};
         // detailMap.put(id, details);
         FileManagement fm = new FileManagement();
-        fm.detailsInputStudent(id, name, course, marks, attendence);
-    }   
+        fm.studentInfoAppend(id, course, marks);
+    }
 
-    public void getDetails ()throws IOException
-    {
+    public void getDetails() throws IOException {
         FileManagement fm = new FileManagement();
         String str = fm.infoReader(id, 2);
         int index[] = new int[4];
@@ -67,12 +62,10 @@ public class Teacher extends User {
         }
         System.out.println("Name of the teacher is :- " + str.substring(index[1], index[2]));
         System.out.println("Id of the teacher is :- " + this.id);
-        System.out.println("The couses taught by the teacher are :- " );
-        for (int i = 1; i < 4; i++)
-        {
+        System.out.println("The couses taught by the teacher are :- ");
+        for (int i = 1; i < 4; i++) {
             System.out.println(str.substring(index[i], index[i + 1]));
         }
     }
-    
 
 }

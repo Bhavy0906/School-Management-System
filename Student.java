@@ -9,13 +9,11 @@ public class Student extends User {
     private int calculateAttendence;
     private String grades;
 
-    public Student ()
-    {
-        
+    public Student() {
+
     }
 
-    public Student (String name, String id)
-    {
+    public Student(String name, String id) {
         this.name = name;
         this.id = id;
         student.put(id, name);
@@ -24,28 +22,38 @@ public class Student extends User {
         grades = "NC";
     }
 
-    public double getMarks ()
-    {
+    public double getMarks() {
         return totalMarks;
     }
 
-    public int getAttendence ()
-    {
+    public int getAttendence() {
         return calculateAttendence;
     }
 
-    public String getGrades ()
-    {
+    public String getGrades() {
         return grades;
     }
 
-    public void getDetails ()
-    {
-        System.out.println("Name of the student is :- " + this.name);
-        System.out.println("Identity number of the student is :- " + this.id);
-        System.out.println("The total marks scored by the student is :- " + getMarks());
-        System.out.println("The total attendence of the student is :- " + getAttendence());
-        System.out.println("The grades of the student is :- " + getGrades());
+    public void getDetails() throws IOException {
+        FileManagement fm = new FileManagement();
+        String str = fm.infoReader(id, 1);
+        int index[] = new int[14];
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (ch == ',') {
+                index[count] = i;
+                count++;
+            }
+        }
+        System.out.println("Name of the student is :- " + str.substring(index[0], index[1]));
+        System.out.println("Identity number of the student is :- " + id);
+        for (int i = 2; i < 11; i++) {
+            System.out.println("Course of the student and marks obtained in it are :- "
+                    + str.substring(index[i], index[i + 1]) + " " + str.substring(index[i + 1], index[i + 2]));
+        }
+        System.out.println("The total attendence of the student is :- " + str.substring(index[1], index[2]));
+        System.out.println("The grades of the student is :- " + str.substring(index[12], index[13]));
     }
-    
+
 }

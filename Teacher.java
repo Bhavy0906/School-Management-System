@@ -2,6 +2,7 @@
  * Teacher
  */
 
+import java.io.*;
 import java.util.*;
 
 public class Teacher extends User{
@@ -38,10 +39,34 @@ public class Teacher extends User{
         idOfStudents = getIDStudent();
     }
 
-    void setDetails(String id, String course, String marks, String grade, String attendence){
-        String[] details = {course, marks, grade, attendence};
-        detailMap.put(id, details);
+    void setDetails(String id, String[] course, String[] marks)throws IOException{
+        // String[] details = {course, marks, grade, attendence};
+        // detailMap.put(id, details);
+        FileManagement fm = new FileManagement();
+        fm.studentInfoAppend(id, course, marks);
     }   
+
+    public void getDetails ()throws IOException
+    {
+        FileManagement fm = new FileManagement();
+        String str = fm.infoReader(id, 2);
+        int index[] = new int[4];
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (ch == ',') {
+                index[count] = i;
+                count++;
+            }
+        }
+        System.out.println("Name of the teacher is :- " + str.substring(index[1], index[2]));
+        System.out.println("Id of the teacher is :- " + this.id);
+        System.out.println("The couses taught by the teacher are :- " );
+        for (int i = 1; i < 4; i++)
+        {
+            System.out.println(str.substring(index[i], index[i + 1]));
+        }
+    }
     
 
 }

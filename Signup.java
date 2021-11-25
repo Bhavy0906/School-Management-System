@@ -12,13 +12,6 @@ public class Signup extends User {
 
     public void createNewUser(int number) throws IOException {
         Input in = new Input();
-        // userID = in.userID();
-        // while (tree.containsKey(userID)) {
-        // System.out.println("User ID already exists, Please enter some other User
-        // ID");
-        // userID = br.readLine();
-        // continue;
-        // }
         FileManagement fm = new FileManagement();
         userID = in.userID();
         password = fm.loginSearch(userID, number);
@@ -31,6 +24,8 @@ public class Signup extends User {
         System.out.println("Enter User Name");
         userName = br.readLine();
         password = in.password();
+        
+        // 
     }
 
     public int checkSignUp() throws IOException {

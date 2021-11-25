@@ -162,8 +162,8 @@ public class FileManagement {
                 int len = userID.length();
                 String sub;
                 if (str.charAt(0) == '"') {
-                    sub = str.substring(1, len+1);
-                }else{
+                    sub = str.substring(1, len + 1);
+                } else {
                     sub = str.substring(0, len);
                 }
                 if (sub.equals(userID))
@@ -231,15 +231,80 @@ public class FileManagement {
             // reader.close();
 
             // Write to CSV file which is open
-            CSVWriter writer = new CSVWriter(new FileWriter(fileToUpdate));
-            writer.writeAll(arrList);
-            writer.flush();
-            writer.close();
+            // CSVWriter writer = new CSVWriter(new FileWriter(fileToUpdate));
+            // writer.writeAll(arrList);
+            // writer.flush();
+            // writer.close();
+            int len = arrList.size();
+            int innerLen = arrList.get(0).length;
+            String str = "";
+            for (int i = 0; i < len; i++) {
+                for (int j = 0; j < innerLen - 1; j = j + 2) {
+                    str = str + arrList.get(i)[j] + "," + arrList.get(i)[j + 1] + ",";
+                }
+                str = str + "\n";
+            }
+            FileWriter fw = new FileWriter(fileToUpdate);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(str);
+            bw.close();
         } catch (Exception e) {
             System.err.println(e);
         }
     }
 
+    public void deleteEntry(String userID, int choice) throws IOException, CsvException {
+
+        // Read existing file
+        try {
+            infoReader(userID, choice);
+            String fileToUpdate = typeCSV(choice);
+            String line = "";
+            String splitBy = ",";
+            // parsing a CSV file into BufferedReader class constructor
+            BufferedReader br = new BufferedReader(new FileReader(fileToUpdate));
+            List<String> body = new ArrayList<>();
+            while ((line = br.readLine()) != null) // returns a Boolean value
+            {
+                body.add(line);
+            }
+            List<String[]> arrList = new ArrayList<>();
+            for (int i = 0; i < body.size(); i++) {
+                String[] employee = body.get(i).split(splitBy); // use comma as separator
+                arrList.add(employee);
+            }
+            arrList.remove(row);
+            br.close();
+            // // File inputFile = new File("StudentInfo.csv");
+            // CSVReader reader = new CSVReader(new FileReader("StudentInfo.csv"));
+            // List<String[]> csvBody = reader.readAll();
+            // // get CSV row column and replace with by using row and column
+            // System.out.println(csvBody.get(row));
+
+            // reader.close();
+
+            // Write to CSV file which is open
+            // CSVWriter writer = new CSVWriter(new FileWriter(fileToUpdate));
+            // writer.writeAll(arrList);
+            // writer.flush();
+            // writer.close();
+            int len = arrList.size();
+            int innerLen = arrList.get(0).length;
+            String str = "";
+            for (int i = 0; i < len; i++) {
+                for (int j = 0; j < innerLen - 1; j = j + 2) {
+                    str = str + arrList.get(i)[j] + "," + arrList.get(i)[j + 1] + ",";
+                }
+                str = str + "\n";
+            }
+            FileWriter fw = new FileWriter(fileToUpdate);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(str);
+            bw.close();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
     // public void detailsInputStudent(String id, String name, String[] course,
     // String[] marks, String attendence) {
     // }

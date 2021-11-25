@@ -5,11 +5,7 @@ public class Index {
     // Linear-search function to find the index of an element
     public int findIndex(String arr[], String t) {
 
-        // if array is Null
-        if (arr == null) {
-            return -1;
-        }
-
+       
         // find length of array
         int len = arr.length;
         int i = 0;

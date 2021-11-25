@@ -4,6 +4,7 @@ import java.util.*;
 public class Student extends User {
 
     private String name;
+    private String password;
     private String id;
     private double totalMarks;
     private int calculateAttendence;
@@ -14,11 +15,17 @@ public class Student extends User {
         
     }
 
-    public Student (String name, String id)
+    public Student (String id, String name, String password)
     {
         this.name = name;
         this.id = id;
-        student.put(id, name);
+        this.password = password;
+        FileManagement fm = new FileManagement();
+        try {
+            fm.loginInput(this.id, this.password, 1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         totalMarks = 0;
         calculateAttendence = 0;
         grades = "NC";

@@ -1,9 +1,11 @@
 import java.io.*;
 import java.util.*;
 
+import com.opencsv.exceptions.CsvException;
+
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, CsvException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         Scanner sc = new Scanner(System.in);
@@ -58,6 +60,14 @@ public class Main {
                 // tch.setDetails("Bhavy", "Meow", 50);
                 // tch.setDetails("Uday", "Opti", 50);
             }
+            if(value == 3){
+                
+                System.out.println("Enter 1 for student and 2 for teacher");
+                int choice = Integer.parseInt(br.readLine());
+                System.out.println("Enter User Id");
+                String userID = br.readLine();
+                Admin.delete(userID, choice);
+            }
 
         } else if (tree == User.student) {
             details.enterLogin();
@@ -67,7 +77,6 @@ public class Main {
         } else if (tree == User.teacher) {
             details.enterLogin();
             String userID = login.loginValueCheck(2);
-            // Teacher.setDetails("Bhavy", "Meow", 50);
             System.out.println("Enter student user id");
             String id = br.readLine();
             System.out.println("Enter course name");
@@ -75,7 +84,6 @@ public class Main {
             System.out.println("Enter course marks");
             int marks = Integer.parseInt(br.readLine());
             Teacher.setDetails(id, course, marks);
-
         }
     }
 }

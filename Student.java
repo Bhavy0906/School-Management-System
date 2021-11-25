@@ -38,7 +38,7 @@ public class Student extends User {
     //     return grades;
     // }
 
-    public void getDetails() throws IOException {
+    public static void getDetails(String id) throws IOException {
         FileManagement fm = new FileManagement();
         String str = fm.infoReader(id, 1);
         int index[] = new int[13];

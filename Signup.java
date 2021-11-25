@@ -30,7 +30,7 @@ public class Signup extends User {
 
     public int checkSignUp() throws IOException {
         int val = Integer.parseInt(br.readLine());
-        while (val != 1 && val != 2) {
+        while (val != 1 && val != 2 && val!=3) {
             System.out.println("Invalid Input, Please try again");
             val = Integer.parseInt(br.readLine());
             continue;

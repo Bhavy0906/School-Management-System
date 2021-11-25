@@ -44,7 +44,6 @@ public class Main {
                 }
                 System.out.println("Signup Successful");
                 Student std = new Student(signup.userID, signup.userName, signup.password, course);
-                std.getDetails();
             }
             if (value == 2) {
                 signup.createNewUser(value);
@@ -56,18 +55,20 @@ public class Main {
                 }
                 System.out.println("Signup Successful");
                 tch = new Teacher(signup.userID, signup.userName, signup.password, course);
-                tch.setDetails("Bhavy0906", "Meow", 50);
+                // tch.setDetails("Bhavy", "Meow", 50);
+                // tch.setDetails("Uday", "Opti", 50);
             }
 
         }
         else if (tree == User.student) {
             details.enterLogin();
-            login.loginValueCheck(1);
+            String userID = login.loginValueCheck(1);
 
         } else if (tree == User.teacher) {
             details.enterLogin();
-            login.loginValueCheck(2);
-            // tch.setDetails("Bhavy0906", "Meow", 50);
+            String userID = login.loginValueCheck(2);
+            // Teacher.setDetails("Bhavy", "Meow", 50);
+            Teacher.setDetails("Uday", "Opti", 50);
 
         }
 

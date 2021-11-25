@@ -125,6 +125,26 @@ public class FileManagement {
         out.close();
     }
 
+    public String infoReader (String userID, int choice)throws IOException{
+        BufferedReader input = null;
+        String name = typeCSV(choice);
+        String str = "";
+        try {
+            input = new BufferedReader(new FileReader(name));
+            while ((str = input.readLine()) != null)
+            {
+                int len = userID.length();
+                String sub = str.substring(0, len);
+                if (sub.equals(userID))
+                return str;
+            }
+        } catch (Exception e) {
+            System.err.println(e);
+            input.close();
+        }
+        return "";
+    }
+
     public String loginSearch(String userID, int choice) throws IOException {
         BufferedReader input = null;
         String name = typeTXT(choice);

@@ -87,7 +87,7 @@ public class FileManagement {
                 out.write(course[i] + ",");
             }
             // Will write the details into the .csv file in the format:-
-            // UserID   Name    Course[i]
+            // UserID Name Course[i]
         } catch (Exception e) {
             System.err.println(e);
         }

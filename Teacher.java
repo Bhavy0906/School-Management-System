@@ -43,7 +43,7 @@ public class Teacher extends User{
         // String[] details = {course, marks, grade, attendence};
         // detailMap.put(id, details);
         FileManagement fm = new FileManagement();
-        fm.studentInfoAppend(id, course, marks);
+        fm.detailsInputStudent(id, name, course, marks, attendence);
     }   
 
     public void getDetails ()throws IOException

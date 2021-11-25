@@ -6,41 +6,37 @@ public class Student extends User {
     private String name;
     private String password;
     private String id;
-    private double totalMarks;
-    private int calculateAttendence;
-    private String grades;
+    private String[] course;
+    // private double totalMarks;
+    // private int calculateAttendence;
+    // private String grades;
 
     public Student() {
 
     }
 
-    public Student (String id, String name, String password)
-    {
+    public Student(String id, String name, String password, String[] course) throws IOException {
         this.name = name;
         this.id = id;
         this.password = password;
+        this.course = course;
         FileManagement fm = new FileManagement();
-        try {
-            fm.loginInput(this.id, this.password, 1);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        totalMarks = 0;
-        calculateAttendence = 0;
-        grades = "NC";
+        fm.loginInput(this.id, this.password, 1);
+        String[] marks = { "0", "0", "0", "0", "0"};
+        fm.detailsInputStudent(this.id, this.name, this.course, marks, 1, 1);
     }
 
-    public double getMarks() {
-        return totalMarks;
-    }
+    // public double getMarks() {
+    //     return totalMarks;
+    // }
 
-    public int getAttendence() {
-        return calculateAttendence;
-    }
+    // public int getAttendence() {
+    //     return calculateAttendence;
+    // }
 
-    public String getGrades() {
-        return grades;
-    }
+    // public String getGrades() {
+    //     return grades;
+    // }
 
     public void getDetails() throws IOException {
         FileManagement fm = new FileManagement();

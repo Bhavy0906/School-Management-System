@@ -10,16 +10,26 @@ public class Signup extends User {
     public Signup() {
     }
 
-    public void createNewUser(TreeMap<String, String> tree) throws IOException {
+    public void createNewUser(int number) throws IOException {
         Input in = new Input();
+        // userID = in.userID();
+        // while (tree.containsKey(userID)) {
+        // System.out.println("User ID already exists, Please enter some other User
+        // ID");
+        // userID = br.readLine();
+        // continue;
+        // }
+        FileManagement fm = new FileManagement();
         userID = in.userID();
-        while (tree.containsKey(userID)) {
-            System.out.println("User ID already exists, Please enter some other User ID");
-            userID = br.readLine();
+        password = fm.loginSearch(userID, number);
+        while (!password.equals("")) {
+            System.out.println("Username Already Exists");
+            userID = in.userID();
+            password = fm.loginSearch(userID, number);
             continue;
         }
         System.out.println("Enter User Name");
-        userName = br.readLine(); 
+        userName = br.readLine();
         password = in.password();
     }
 

@@ -73,12 +73,12 @@ public class FileManagement {
     }
 
     // Writes the basic details of the student into a .csv file
-    public void detailsInputStudent(String userID, String name, String[] course, int[] marks, int attendence,
-            double grades, int choice) throws IOException {
+    public void detailsInputStudent(String userID, String name, String[] course, int[] marks, int attendence, int choice) throws IOException {
         Writer out = null;
+        double grades = 0;
         try {
             out = new BufferedWriter(new FileWriter(typeCSV(choice), true));
-            out.write(userID + "," + name + "," + attendence);
+            out.write(userID + "," + name + "," + attendence + ",");
             for (int i = 0; i < 5; i++) {
                 out.write(course[i] + "," + Integer.toString(marks[i]) + ",");
                 grades = grades + marks[i];
@@ -92,6 +92,30 @@ public class FileManagement {
         }
         out.close();
     }
+
+    public void studentInfoAppend (String userID, String course[], String marks[])throws IOException
+    {
+        Writer out = null;
+        Reader input = null;
+        try {
+            out = new BufferedWriter(new FileWriter("StudentInfo.csv", true));
+            input = new BufferedReader (new FileReader ("StudentInfo.csv"));
+            String str = "";
+            while ((str = input.readLine()) != null)
+            {
+                int len = userID.length();
+                String sub = str.substring(0, len);
+                int index = str.indexOf(",", len);
+                if (sub.equals(userID))
+                {   
+                    
+                }
+            }
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+    }
+
 
     // Writes the basic details of the teacher into a .csv file
     public void detailsInputTeacher(String userID, String name, String[] course, int choice) throws IOException {
@@ -152,9 +176,9 @@ public class FileManagement {
         try {
             input = new BufferedReader(new FileReader(name));
             while ((str = input.readLine()) != null) {
-                if (str.equals(userID))
+                if (str.equals(userID)){
                     return input.readLine();
-                    // input.close();
+                }
             }
         } catch (Exception e) {
             System.err.println(e);

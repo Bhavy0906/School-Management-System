@@ -88,7 +88,8 @@ public class FileManagement {
                 grades = grades + Integer.parseInt(marks[i]);
             }
             grades = grades / 5;
-            out.write(Double.toString(grades));
+            out.write(Double.toString(grades) + "\n");
+
             // Will write the details into the .csv file in the format:-
             // UserID Name Attendence Course[i] Marks[i] Grades
         } catch (Exception e) {
@@ -98,11 +99,11 @@ public class FileManagement {
     }
 
     public void studentInfoAppend(String userID, String course, int marks) throws IOException {
-        int row = 0;
+        // int row = 0;
         try {
             String str = "";
-            String columns[] = str.split(",");
             str = infoReader(userID, 1);
+            String columns[] = str.split(",");
             Index index = new Index();
             int col = index.findIndex(columns, course);
             updateCSV("StudentInfo.csv", marks, row, col + 1);
@@ -159,7 +160,12 @@ public class FileManagement {
             while ((str = input.readLine()) != null) {
                 row++;
                 int len = userID.length();
-                String sub = str.substring(0, len);
+                String sub;
+                if (str.charAt(0) == '"') {
+                    sub = str.substring(1, len+1);
+                }else{
+                    sub = str.substring(0, len);
+                }
                 if (sub.equals(userID))
                     return str;
             }
@@ -197,28 +203,41 @@ public class FileManagement {
 
     public void updateCSV(String fileToUpdate, int replace, int row, int col) throws IOException, CsvException {
 
-        
-
         // Read existing file
         try {
-            // File inputFile = new File("StudentInfo.csv");
-            FileReader filereader = new FileReader("StudentInfo.csv");
-            CSVReader reader = new CSVReaderBuilder(filereader).build();
-            List<String[]> csvBody = reader.readAll();
-            // get CSV row column and replace with by using row and column
-            csvBody.get(row)[col] = Integer.toString(replace);
-            reader.close();
+
+            String line = "";
+            String splitBy = ",";
+            // parsing a CSV file into BufferedReader class constructor
+            BufferedReader br = new BufferedReader(new FileReader(fileToUpdate));
+            List<String> body = new ArrayList<>();
+            while ((line = br.readLine()) != null) // returns a Boolean value
+            {
+                body.add(line);
+            }
+            List<String[]> arrList = new ArrayList<>();
+            for (int i = 0; i < body.size(); i++) {
+                String[] employee = body.get(i).split(splitBy); // use comma as separator
+                arrList.add(employee);
+            }
+            arrList.get(row)[col] = Integer.toString(replace);
+            br.close();
+            // // File inputFile = new File("StudentInfo.csv");
+            // CSVReader reader = new CSVReader(new FileReader("StudentInfo.csv"));
+            // List<String[]> csvBody = reader.readAll();
+            // // get CSV row column and replace with by using row and column
+            // System.out.println(csvBody.get(row));
+
+            // reader.close();
 
             // Write to CSV file which is open
-            CSVWriter writer = new CSVWriter(new FileWriter("StudentInfo.csv"));
-            writer.writeAll(csvBody);
+            CSVWriter writer = new CSVWriter(new FileWriter(fileToUpdate));
+            writer.writeAll(arrList);
             writer.flush();
             writer.close();
         } catch (Exception e) {
-            // TODO: handle exception
             System.err.println(e);
         }
-
     }
 
     // public void detailsInputStudent(String id, String name, String[] course,

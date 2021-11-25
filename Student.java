@@ -18,10 +18,10 @@ public class Student extends User {
     {
         this.name = name;
         this.id = id;
-        User.student.put(id, name);
+        student.put(id, name);
         totalMarks = 0;
         calculateAttendence = 0;
-        grades = "";
+        grades = "NC";
     }
 
     public double getMarks ()
@@ -43,9 +43,9 @@ public class Student extends User {
     {
         System.out.println("Name of the student is :- " + this.name);
         System.out.println("Identity number of the student is :- " + this.id);
-        System.out.println("The total marks scored by the student is :- " + this.totalMarks);
-        System.out.println("The total attendence of the student is :- " + this.calculateAttendence);
-        System.out.println("The grades of the student is :- " + this.grades);
+        System.out.println("The total marks scored by the student is :- " + getMarks());
+        System.out.println("The total attendence of the student is :- " + getAttendence());
+        System.out.println("The grades of the student is :- " + getGrades());
     }
     
 }

@@ -8,7 +8,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         Scanner sc = new Scanner(System.in);
         FileManagement fm = new FileManagement();
-        fm.adminDetails();
+        // fm.adminDetails();
 
         Details details = new Details();
         // Details class displays the basic information and various print statements
@@ -29,26 +29,26 @@ public class Main {
 
         if (tree == User.student) {
             details.enterLogin();
-            login.loginValueCheck(tree);
+            login.loginValueCheck(1);
 
         } else if (tree == User.teacher) {
             details.enterLogin();
-            login.loginValueCheck(tree);
+            login.loginValueCheck(2);
 
         } else if (tree == User.admin) {
             details.enterLogin();
-            login.loginValueCheck(tree);
+            login.loginValueCheck(3);
 
             details.enterSignup();
             int value = signup.checkSignUp();
             if (value == 1) {
-                signup.createNewUser(User.student);
-                Student std = new Student(signup.userID, signup.userName);
+                signup.createNewUser(value);
+                Student std = new Student(signup.userID, signup.userName, signup.password);
                 std.getDetails();
             }
             if (value == 2) {
-                signup.createNewUser(User.teacher);
-                Teacher tch = new Teacher(signup.userID, signup.userName);
+                signup.createNewUser(value);
+                Teacher tch = new Teacher(signup.userID, signup.userName, signup.password);
             }
 
         }

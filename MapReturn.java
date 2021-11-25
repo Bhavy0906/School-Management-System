@@ -2,7 +2,7 @@ import java.util.*;
 
 public class MapReturn extends User {
     
-    public TreeMap type (int ch)
+    public TreeMap<String, String> type (int ch)
     {
         TreeMap <String, String> tree = new TreeMap<>();
         switch (ch)

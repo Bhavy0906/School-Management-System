@@ -1,9 +1,8 @@
 # School-Management-System
 Description:-
 Basic Information – The code is not in line with the description mentioned by our Teaching Assistant (TA) Pushkal Goyal. The code is a development code with different test cases and procedures, as explained in this file and the uploaded video. Please go through them once to understand the code better.
-The GitHub link of the code is Uday-Mi/School-Management-System (github.com)
 The code is a multi-class code and has several codes, which are controlled by the Main class.
-The code is in Command User Interface (CUI).
+The code is in Command Line Interface (CLI).
 
 The code contains five files, whose names are
 Student.txt
